@@ -2,7 +2,7 @@ c_flags=-std=gnu11
 cpp_flags=-std=gnu++0x
 cc_flags=-MMD -g
 
-ld_flags=-lm -lbsd -lGL -lGLee -lglfw
+ld_flags=-lm -lstdc++ -lbsd -lGL -lGLee -lglfw -lassimp 
 
 # TODO: Find a better way to do this.
 lib_src_c=$(wildcard **/*.c)
@@ -23,14 +23,16 @@ toplevel_obj=$(toplevel_obj_c) $(toplevel_obj_cpp)
 
 obj=$(lib_obj) $(toplevel_obj)
 
-all: ref
+all: ref model_conv
 
 clean:
 	rm -rf build/*
 
-.PHONY: ref
+.PHONY: ref model_conv
 
 ref: build/ref
+
+model_conv: build/model_conv
 
 build/obj/%.c.o: %.c
 	mkdir -p $(dir $@)
@@ -43,4 +45,7 @@ build/obj/%.cpp.o: %.cpp
 -include $(obj:.o=.d)
 
 build/ref: build/obj/ref.c.o $(lib_obj)
+	cc $(ld_flags) -o $@ $^
+
+build/model_conv: build/obj/model_conv.cpp.o $(lib_obj)
 	cc $(ld_flags) -o $@ $^
