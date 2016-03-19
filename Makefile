@@ -28,13 +28,15 @@ all: ref model_conv model_view
 clean:
 	rm -rf build/*
 
-.PHONY: ref model_conv model_view
+.PHONY: ref model_conv model_view txtref
 
 ref: build/ref
 
 model_conv: build/model_conv
 
 model_view: build/model_view
+
+txtref: build/txtref
 
 build/obj/%.c.o: %.c
 	mkdir -p $(dir $@)
@@ -53,4 +55,7 @@ build/model_conv: build/obj/model_conv.cpp.o $(lib_obj)
 	cc $(ld_flags) -o $@ $^
 
 build/model_view: build/obj/model_view.c.o $(lib_obj)
+	cc $(ld_flags) -o $@ $^
+
+build/txtref: build/obj/txtref.c.o $(lib_obj)
 	cc $(ld_flags) -o $@ $^
