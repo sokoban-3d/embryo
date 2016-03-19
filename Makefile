@@ -23,7 +23,7 @@ toplevel_obj=$(toplevel_obj_c) $(toplevel_obj_cpp)
 
 obj=$(lib_obj) $(toplevel_obj)
 
-all: ref model_conv model_view
+all: ref model_conv model_view txtref
 
 clean:
 	rm -rf build/*
