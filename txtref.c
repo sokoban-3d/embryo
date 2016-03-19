@@ -27,6 +27,9 @@
 #include "txt/upload.h"
 #include "txt/draw.h"
 
+#include "anim/txt_alpha_init.h"
+#include "anim/txt_alpha_update.h"
+
 #include "time/fsleep.h"
 
 int main(int argc, char **argv) {
@@ -61,8 +64,15 @@ int main(int argc, char **argv) {
         s3d_txt_init(
             &txt, &fnt, color, 0, (argc >= 3)? argv[2] : "京都は綺麗"
         );
+    }
 
-        s3d_txt_upload(&txt, GL_STATIC_DRAW);
+    s3d_anim_txt_alpha_state anim_st;
+
+    {
+        anim_st.txt = &txt;
+        anim_st.speed = 10;
+
+        s3d_anim_txt_alpha_init(&anim_st);
     }
 
     unsigned p_id = s3d_glsl_load_program(
@@ -107,6 +117,12 @@ int main(int argc, char **argv) {
                 glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
                 s3d_txt_bind(&txt);
+
+                if(!anim_st.done) {
+                    s3d_anim_txt_alpha_update(&anim_st);
+
+                    s3d_txt_upload(&txt, GL_STREAM_DRAW);
+                }
 
                 s3d_txt_draw(&txt);
             }
