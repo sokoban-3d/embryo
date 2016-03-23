@@ -1,0 +1,16 @@
+stg w=4 h=5
+
+player x=2 y=1
+
+walls count=1
+wall x=1 y=1
+
+blocks count=3
+block x=1 y=2
+block x=2 y=2
+block x=2 y=3
+
+slots count=3
+slot x=2 y=1
+slot x=1 y=2
+slot x=1 y=3
