@@ -1,5 +1,7 @@
 #pragma once
 
+#include "../math/intvec2.h"
+
 #include "player.h"
 #include "wall.h"
 #include "block.h"
