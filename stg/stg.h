@@ -2,6 +2,7 @@
 
 #include "../math/vec3.h"
 #include "../math/intvec2.h"
+#include "../math/mat4.h"
 
 #include "../model/model.h"
 
@@ -18,6 +19,8 @@ struct {
 
         float tsz;
     } board;
+
+    s3d_mat4 mat;
 
     s3d_model model;
 
