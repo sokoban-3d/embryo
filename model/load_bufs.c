@@ -40,13 +40,5 @@ unsigned s3d_model_load_bufs(const char *path) {
         );
     }
 
-    {
-        s3d_strarrjoin(path_buf, { path, "/tex" });
-
-        if(access(path_buf, F_OK) == 0) {
-            s3d_gl_load_dds(0, path_buf);
-        }
-    }
-
     return va_id;
 }
