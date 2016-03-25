@@ -126,7 +126,7 @@ int main() {
         glEnableVertexAttribArray(1);
         glVertexAttribPointer(1, 2, GL_FLOAT, 0, 0, 0);
 
-        s3d_gl_load_dds(0, "data/grid_256.dds");
+        s3d_gl_load_dds(0, "data/tex/grid_256.dds");
     }
 
     unsigned p_id = s3d_glsl_load_program(
