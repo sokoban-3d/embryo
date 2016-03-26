@@ -10,7 +10,7 @@
 #include "stg/query_at.h"
 #include "stg/obj_type.h"
 #include "stg/load_spec.h"
-#include "stg/recompute_slotted_blocks.h"
+#include "stg/init.h"
 #include "stg/play.h"
 
 #include "io/print.h"
@@ -76,7 +76,7 @@ int main(int argc, char **argv) {
         (argc >= 2)? argv[1] : "data/stg/proto_1"
     );
 
-    s3d_stg_recompute_slotted_blocks();
+    s3d_stg_init();
 
     while(1) {
         system("clear");
