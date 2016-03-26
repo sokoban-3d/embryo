@@ -10,7 +10,7 @@
 #include "stg/query_at.h"
 #include "stg/obj_type.h"
 #include "stg/load_spec.h"
-#include "stg/recompute_slotted_blocks.h"
+#include "stg/init.h"
 #include "stg/play.h"
 
 #include "io/print.h"
@@ -25,8 +25,8 @@ void print_state() {
         s3d_stg.num_slots
     );
 
-    int w = s3d_stg.sz[0];
-    int h = s3d_stg.sz[1];
+    int w = s3d_stg.board.sz[0];
+    int h = s3d_stg.board.sz[1];
 
     for(int i = 0; i < w + 4; ++i) {
         s3d_print("W");
@@ -76,7 +76,7 @@ int main(int argc, char **argv) {
         (argc >= 2)? argv[1] : "data/stg/proto_1"
     );
 
-    s3d_stg_recompute_slotted_blocks();
+    s3d_stg_init();
 
     while(1) {
         system("clear");

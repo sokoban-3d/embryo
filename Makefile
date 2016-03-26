@@ -23,12 +23,12 @@ toplevel_obj=$(toplevel_obj_c) $(toplevel_obj_cpp)
 
 obj=$(lib_obj) $(toplevel_obj)
 
-all: ref model_conv model_view txtref padref cmdqref proto_1
+all: ref model_conv model_view txtref padref cmdqref proto_1 proto_2
 
 clean:
 	rm -rf build/*
 
-.PHONY: ref model_conv model_view txtref padref cmdqref proto_1
+.PHONY: ref model_conv model_view txtref padref cmdqref proto_1 proto_2
 
 ref: build/ref
 
@@ -43,6 +43,8 @@ padref: build/padref
 cmdqref: build/cmdqref
 
 proto_1: build/proto_1
+
+proto_2: build/proto_2
 
 build/obj/%.c.o: %.c
 	mkdir -p $(dir $@)
@@ -73,4 +75,7 @@ build/cmdqref: build/obj/cmdqref.c.o $(lib_obj)
 	cc $(ld_flags) -o $@ $^
 
 build/proto_1: build/obj/proto_1.c.o $(lib_obj)
+	cc $(ld_flags) -o $@ $^
+
+build/proto_2: build/obj/proto_2.c.o $(lib_obj)
 	cc $(ld_flags) -o $@ $^

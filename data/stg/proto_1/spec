@@ -1,4 +1,4 @@
-stg w=4 h=5
+board w=4 h=5 ox=-3 oy=1 oz=-4 sz=2
 
 player x=2 y=1
 

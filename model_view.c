@@ -20,6 +20,8 @@
 #include "glsl/load_program.h"
 
 #include "model/load.h"
+#include "model/bind_va.h"
+#include "model/bind_tex.h"
 
 #include "str/empty.h"
 
@@ -230,7 +232,9 @@ int main(int argc, char **argv) {
 
         glUseProgram(p_id);
 
-        glBindVertexArray(model.va_id);
+        s3d_model_bind_va(&model);
+
+        s3d_model_bind_tex(&model);
 
         glfwGetWindowSize(s3d_gl_wnd, &w, &h);
 

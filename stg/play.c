@@ -34,7 +34,9 @@ int s3d_stg_play(int x, int y) {
         s3d_stg_query_at(dx, dy, &d_obj_type, &d_obj, 0);
 
         switch(d_obj_type) {
-            case s3d_stg_obj_type_wall: return 0;
+            case s3d_stg_obj_type_outer_wall:
+            case s3d_stg_obj_type_wall:
+                return 0;
 
             case s3d_stg_obj_type_block:
                 if(!s3d_stg_push_block(d_obj, x, y)) { return 0; }

@@ -27,7 +27,10 @@ int s3d_stg_push_block(s3d_stg_block *b, int x, int y) {
 
         s3d_stg_query_at(dx, dy, &d_obj_type, &d_obj, &d_slot);
 
-        if(d_obj && d_obj_type != s3d_stg_obj_type_slot) {
+        if(
+            d_obj_type == s3d_stg_obj_type_outer_wall
+            || (d_obj && d_obj_type != s3d_stg_obj_type_slot)
+        ) {
             return 0;
         }
 

@@ -20,7 +20,7 @@
 
 #include "stg.h"
 
-#include "../mem/mallocptr.h"
+#include "../mem/callocptr.h"
 
 void s3d_stg_load_spec(const char *path) {
     static char path_buf[PATH_MAX];
@@ -73,12 +73,24 @@ void s3d_stg_load_spec(const char *path) {
                 bad_spec("Bad " name " value"); \
             }
 
-        if(parse_tag_tok("stg")) {
+        if(parse_tag_tok("board")) {
             parse_attr_tok("w");
-            parse_long_tok(s3d_stg.sz[0], "width");
+            parse_long_tok(s3d_stg.board.sz[0], "width");
 
             parse_attr_tok("h");
-            parse_long_tok(s3d_stg.sz[1], "height");
+            parse_long_tok(s3d_stg.board.sz[1], "height");
+
+            parse_attr_tok("ox");
+            parse_float_tok(s3d_stg.board.origin[0], "origin X");
+
+            parse_attr_tok("oy");
+            parse_float_tok(s3d_stg.board.origin[1], "origin Y");
+
+            parse_attr_tok("oz");
+            parse_float_tok(s3d_stg.board.origin[2], "origin Z");
+
+            parse_attr_tok("sz");
+            parse_float_tok(s3d_stg.board.tsz, "tile size");
         }
         else
         if(parse_tag_tok("player")) {
@@ -96,7 +108,7 @@ void s3d_stg_load_spec(const char *path) {
             parse_long_tok(s3d_stg.num_walls, "count");
 
             if(s3d_stg.num_walls > 0) {
-                s3d_mallocptr(s3d_stg.walls, s3d_stg.num_walls);
+                s3d_callocptr(s3d_stg.walls, s3d_stg.num_walls);
             }
 
             iwall = 0;
@@ -125,7 +137,7 @@ void s3d_stg_load_spec(const char *path) {
             parse_long_tok(s3d_stg.num_blocks, "count");
 
             if(s3d_stg.num_blocks > 0) {
-                s3d_mallocptr(s3d_stg.blocks, s3d_stg.num_blocks);
+                s3d_callocptr(s3d_stg.blocks, s3d_stg.num_blocks);
             }
 
             iblock = 0;
@@ -154,7 +166,7 @@ void s3d_stg_load_spec(const char *path) {
             parse_long_tok(s3d_stg.num_slots, "count");
 
             if(s3d_stg.num_slots > 0) {
-                s3d_mallocptr(s3d_stg.slots, s3d_stg.num_slots);
+                s3d_callocptr(s3d_stg.slots, s3d_stg.num_slots);
             }
 
             islot = 0;

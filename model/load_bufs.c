@@ -35,15 +35,9 @@ unsigned s3d_model_load_bufs(const char *path) {
     {
         s3d_strarrjoin(path_buf, { path, "/idx" });
 
-        s3d_gl_load_buf(GL_ELEMENT_ARRAY_BUFFER, path_buf, GL_STATIC_DRAW);
-    }
-
-    {
-        s3d_strarrjoin(path_buf, { path, "/tex" });
-
-        if(access(path_buf, F_OK) == 0) {
-            s3d_gl_load_dds(0, path_buf);
-        }
+        s3d_gl_load_buf(
+            GL_ELEMENT_ARRAY_BUFFER, path_buf, GL_STATIC_DRAW
+        );
     }
 
     return va_id;
