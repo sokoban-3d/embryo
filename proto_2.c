@@ -1,5 +1,3 @@
-#include <assert.h>
-
 #include <GL/GLee.h>
 #include <GLFW/glfw3.h>
 
@@ -102,8 +100,6 @@ int main(int argc, char **argv) {
     }
 
     {
-        assert(argc >= 1);
-
         const char *stg_path = (
             (argc >= 2)? argv[1] : "data/stg/proto_2"
         );
