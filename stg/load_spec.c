@@ -73,12 +73,24 @@ void s3d_stg_load_spec(const char *path) {
                 bad_spec("Bad " name " value"); \
             }
 
-        if(parse_tag_tok("stg")) {
+        if(parse_tag_tok("board")) {
             parse_attr_tok("w");
-            parse_long_tok(s3d_stg.sz[0], "width");
+            parse_long_tok(s3d_stg.board.sz[0], "width");
 
             parse_attr_tok("h");
-            parse_long_tok(s3d_stg.sz[1], "height");
+            parse_long_tok(s3d_stg.board.sz[1], "height");
+
+            parse_attr_tok("ox");
+            parse_float_tok(s3d_stg.board.origin[0], "origin X");
+
+            parse_attr_tok("oy");
+            parse_float_tok(s3d_stg.board.origin[1], "origin Y");
+
+            parse_attr_tok("oz");
+            parse_float_tok(s3d_stg.board.origin[2], "origin Z");
+
+            parse_attr_tok("sz");
+            parse_float_tok(s3d_stg.board.tsz, "tile size");
         }
         else
         if(parse_tag_tok("player")) {

@@ -1,5 +1,6 @@
 #pragma once
 
+#include "../math/vec3.h"
 #include "../math/intvec2.h"
 
 #include "player.h"
@@ -8,7 +9,13 @@
 #include "slot.h"
 
 struct {
-    s3d_intvec2 sz;
+    struct {
+        s3d_intvec2 sz;
+
+        s3d_vec3 origin;
+
+        float tsz;
+    } board;
 
     s3d_stg_player player;
 

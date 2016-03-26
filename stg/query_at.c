@@ -20,8 +20,8 @@ void s3d_stg_query_at(
     }
 
     if(
-        x < 0 || x >= s3d_stg.sz[0]
-        || y < 0 || y >= s3d_stg.sz[1]
+        x < 0 || x >= s3d_stg.board.sz[0]
+        || y < 0 || y >= s3d_stg.board.sz[1]
     ) {
         if(obj_type) {
             *obj_type = s3d_stg_obj_type_outer_wall;

@@ -25,8 +25,8 @@ void print_state() {
         s3d_stg.num_slots
     );
 
-    int w = s3d_stg.sz[0];
-    int h = s3d_stg.sz[1];
+    int w = s3d_stg.board.sz[0];
+    int h = s3d_stg.board.sz[1];
 
     for(int i = 0; i < w + 4; ++i) {
         s3d_print("W");
