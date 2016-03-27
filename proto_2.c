@@ -77,8 +77,8 @@ int main(int argc, char **argv) {
     glfwSetKeyCallback(s3d_gl_wnd, s3d_pad_callback);
 
     {
-        s3d_vec3_assign(cam.rot, s3d_radians(45), 0, 0);
-        s3d_vec3_assign(cam.pos, 0, -2, -20);
+        s3d_vec3_assign(cam.rot, s3d_radians(60), 0, 0);
+        s3d_vec3_assign(cam.pos, 0, -15, -10.2);
     }
 
     {
