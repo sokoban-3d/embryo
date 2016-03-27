@@ -1,3 +1,5 @@
 #pragma once
 
-#define s3d_radians(deg) ((float)(deg) * 0.017)
+#include "pi.h"
+
+#define s3d_radians(deg) ((deg) * (s3d_pi / 180))
