@@ -57,16 +57,8 @@ void cam_mat_update() {
         cam.mat, s3d_radians(45), s3d_ratio(wnd_sz), 0.1, 100
     );
 
-    s3d_mat4 view;
-
-    {
-        s3d_identity(view);
-
-        s3d_translate(view, cam.pos);
-        s3d_euler_rot(view, cam.rot);
-    }
-
-    s3d_mat_mul(cam.mat, view);
+    s3d_euler_rot(cam.mat, cam.rot);
+    s3d_translate(cam.mat, cam.pos);
 }
 
 struct {
