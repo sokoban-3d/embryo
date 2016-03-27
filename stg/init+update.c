@@ -27,8 +27,6 @@
     s3d_translate((p)->mat, (p)->pos);
 
 void s3d_stg_init() {
-    s3d_identity(s3d_stg.mat);
-
     {
         s3d_stg.num_slotted_blocks = 0;
 
@@ -46,6 +44,8 @@ void s3d_stg_init() {
     }
 
     {
+        s3d_vec3_assign(s3d_stg.scale, 1, 1, 1);
+
         s3d_vec3_assign(s3d_stg.player.scale, 1, 1, 1);
 
         for(int i = 0; i < s3d_stg.num_blocks; ++i) {
@@ -77,6 +77,8 @@ void s3d_stg_init() {
 }
 
 void s3d_stg_update() {
+    mat_update(&s3d_stg);
+
     {
         s3d_stg_player *p = &s3d_stg.player;
 

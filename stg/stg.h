@@ -20,6 +20,10 @@ struct {
         float tsz;
     } board;
 
+    s3d_vec3 pos;
+    s3d_vec3 rot;
+    s3d_vec3 scale;
+
     s3d_mat4 mat;
 
     s3d_model model;
