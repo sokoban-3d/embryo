@@ -56,8 +56,8 @@ struct {
 void cam_mat_update() {
     s3d_perspective(cam.mat, cam.fov, s3d_ratio(wnd_sz), 0.1, 100);
 
-    s3d_euler_rot(cam.mat, cam.rot);
     s3d_translate(cam.mat, cam.pos);
+    s3d_euler_rot(cam.mat, cam.rot);
 }
 
 struct {
@@ -78,8 +78,8 @@ int main(int argc, char **argv) {
     {
         cam.fov = s3d_radians(45);
 
-        s3d_vec3_assign(cam.rot, s3d_radians(60), 0, 0);
-        s3d_vec3_assign(cam.pos, 0, -15, -10.2);
+        s3d_vec3_assign(cam.rot, s3d_radians(45), s3d_radians(-35), 0);
+        s3d_vec3_assign(cam.pos, 0, 2, -25);
     }
 
     {
