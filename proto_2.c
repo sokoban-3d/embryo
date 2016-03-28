@@ -53,13 +53,6 @@ struct {
     s3d_mat4 mat;
 } cam;
 
-void cam_mat_update() {
-    s3d_perspective(cam.mat, cam.fov, s3d_ratio(wnd_sz), 0.1, 100);
-
-    s3d_translate(cam.mat, cam.pos);
-    s3d_euler_rot(cam.mat, cam.rot);
-}
-
 struct {
     unsigned id;
 
@@ -136,8 +129,6 @@ int main(int argc, char **argv) {
 
         glfwGetWindowSize(s3d_gl_wnd, &wnd_sz[0], &wnd_sz[1]);
 
-        cam_mat_update();
-
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         {
@@ -145,6 +136,15 @@ int main(int argc, char **argv) {
             glEnable(GL_DEPTH_TEST);
 
             glUseProgram(main_prog.id);
+
+            {
+                s3d_perspective(
+                    cam.mat, cam.fov, s3d_ratio(wnd_sz), 0.1, 100
+                );
+
+                s3d_translate(cam.mat, cam.pos);
+                s3d_euler_rot(cam.mat, cam.rot);
+            }
 
             static s3d_mat4 mvp;
 
