@@ -22,9 +22,9 @@
 
 #define mat_update(p) \
     s3d_identity((p)->mat); \
-    s3d_scale((p)->mat, (p)->scale); \
+    s3d_translate((p)->mat, (p)->pos); \
     s3d_euler_rot((p)->mat, (p)->rot); \
-    s3d_translate((p)->mat, (p)->pos);
+    s3d_scale((p)->mat, (p)->scale);
 
 void s3d_stg_init() {
     {
