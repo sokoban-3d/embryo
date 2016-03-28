@@ -170,7 +170,6 @@ int main(int argc, char **argv) {
             {
                 {
                     s3d_mat_copy(mvp, cam.mat);
-                    s3d_mat_mul(mvp, s3d_stg.mat);
                     s3d_mat_mul(mvp, s3d_stg.player.mat);
 
                     upload_mvp();
@@ -190,7 +189,6 @@ int main(int argc, char **argv) {
 
                 {
                     s3d_mat_copy(mvp, cam.mat);
-                    s3d_mat_mul(mvp, s3d_stg.mat);
                     s3d_mat_mul(mvp, w->mat);
 
                     upload_mvp();
@@ -210,7 +208,6 @@ int main(int argc, char **argv) {
 
                 {
                     s3d_mat_copy(mvp, cam.mat);
-                    s3d_mat_mul(mvp, s3d_stg.mat);
                     s3d_mat_mul(mvp, b->mat);
 
                     upload_mvp();
@@ -230,7 +227,6 @@ int main(int argc, char **argv) {
 
                 {
                     s3d_mat_copy(mvp, cam.mat);
-                    s3d_mat_mul(mvp, s3d_stg.mat);
                     s3d_mat_mul(mvp, s->mat);
 
                     upload_mvp();
