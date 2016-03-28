@@ -9,6 +9,7 @@
 #include "../math/euler_rot.h"
 #include "../math/translate.h"
 #include "../math/vec3_assign.h"
+#include "../math/radians.h"
 
 #define pos_from_tpos(p, i, j) \
     s3d_stg.board.origin[i] + ( \
@@ -81,6 +82,8 @@ void s3d_stg_update() {
 
     {
         s3d_stg_player *p = &s3d_stg.player;
+
+        p->rot[1] += s3d_radians(2);
 
         pos_update(p);
         mat_update(p);
