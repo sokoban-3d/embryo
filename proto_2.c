@@ -46,6 +46,7 @@
 s3d_intvec2 wnd_sz;
 
 struct {
+    float fov;
     s3d_vec3 rot;
     s3d_vec3 pos;
 
@@ -53,9 +54,7 @@ struct {
 } cam;
 
 void cam_mat_update() {
-    s3d_perspective(
-        cam.mat, s3d_radians(45), s3d_ratio(wnd_sz), 0.1, 100
-    );
+    s3d_perspective(cam.mat, cam.fov, s3d_ratio(wnd_sz), 0.1, 100);
 
     s3d_euler_rot(cam.mat, cam.rot);
     s3d_translate(cam.mat, cam.pos);
@@ -77,6 +76,8 @@ int main(int argc, char **argv) {
     glfwSetKeyCallback(s3d_gl_wnd, s3d_pad_callback);
 
     {
+        cam.fov = s3d_radians(45);
+
         s3d_vec3_assign(cam.rot, s3d_radians(60), 0, 0);
         s3d_vec3_assign(cam.pos, 0, -15, -10.2);
     }
