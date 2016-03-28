@@ -78,7 +78,10 @@ int main(int argc, char **argv) {
     {
         cam.fov = s3d_radians(45);
 
-        s3d_vec3_assign(cam.rot, s3d_radians(45), s3d_radians(-35), 0);
+        s3d_vec3_assign(
+            cam.rot, s3d_radians(45), s3d_radians(-35), 0
+        );
+
         s3d_vec3_assign(cam.pos, 0, 2, -25);
     }
 
