@@ -1,6 +1,8 @@
 #ifndef S3D_ERR_H
 #define S3D_ERR_H
 
+#include<GL/GLee.h>
+#include<GLFW/glfw3.h>
 #include<stdio.h>
 #include<stdlib.h>
 
@@ -13,6 +15,14 @@
     );                                     \
                                            \
     abort();                               \
+})
+
+#define assert_gl_ok() ({ \
+    int err = glGetError(); \
+    \
+    if(err) { \
+        abort_because("OpenGL error: %d.", err); \
+    } \
 })
 
 #define assert_bool(expr) ({                              \
