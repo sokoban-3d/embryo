@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 2.6)
 
 project("Sokoban 3d")
 
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin)
+
 find_package(PkgConfig REQUIRED)
 pkg_search_module(ASSIMP REQUIRED assimp)
 pkg_search_module(BSD    REQUIRED libbsd)
@@ -35,3 +37,4 @@ target_link_libraries(sokoban-3d ${BSD_LIBRARIES})
 target_link_libraries(sokoban-3d ${GLU_LIBRARIES})
 target_link_libraries(sokoban-3d ${GLEE_LIBRARIES})
 target_link_libraries(sokoban-3d ${GLFW_LIBRARIES})
+

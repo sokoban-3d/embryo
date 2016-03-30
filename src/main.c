@@ -48,7 +48,7 @@ int main(int argc, char **argv) {
 
     {
         main_prog.id = s3d_glsl_load_program(
-            "glsl/xyz_uv.xyz.glsl", "glsl/uv_tex.frag.glsl"
+            "data/glsl/xyz_uv.xyz.glsl", "data/glsl/uv_tex.frag.glsl"
         );
 
         main_prog.uni.mvp_id = glGetUniformLocation(
