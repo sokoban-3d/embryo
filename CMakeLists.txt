@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.6)
 
-project("Sokoban 3d" C)
+project("Sokoban 3d")
 
 find_package(PkgConfig REQUIRED)
 pkg_search_module(ASSIMP REQUIRED assimp)
@@ -22,6 +22,8 @@ add_executable(sokoban-3d
     "src/glsl.c"
     "src/main.c"
     "src/model.c"
+    "src/mat.c"
+    "src/math.cpp"
     "src/pad.c"
     "src/str.c"
     "src/stg.c"

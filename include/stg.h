@@ -4,6 +4,15 @@
 #include "model.h"
 #include "vec.h"
 #include "mat.h"
+ 
+enum {
+    s3d_stg_obj_type_none,
+    s3d_stg_obj_type_player,
+    s3d_stg_obj_type_outer_wall,
+    s3d_stg_obj_type_wall,
+    s3d_stg_obj_type_block,
+    s3d_stg_obj_type_slot
+};
 
 typedef struct {
     s3d_ivec2 tpos;
@@ -90,6 +99,7 @@ struct {
 void s3d_stg_load_spec(const char *path);
 void s3d_stg_load_models(const char *path);
 void s3d_stg_init();
+void s3d_stg_update();
 
 #endif
 

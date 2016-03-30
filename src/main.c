@@ -4,7 +4,7 @@
 #include "gl.h"
 #include "glsl.h"
 #include "mat.h"
-#include "math.h"
+#include "maths.h"
 #include "pad.h"
 #include "stg.h"
 #include "vec.h"

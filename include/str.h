@@ -41,6 +41,7 @@
 }
 
 int s3d_strcharin(char c, const char *chars);
+int s3d_strchrcount(const char *s, int c);
 
 int s3d_strstartswith(const char *s, const char *prefix);
 int s3d_strendswith(const char *s, const char *suffix);

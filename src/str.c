@@ -1,5 +1,6 @@
 #include<./string.h>
 
+#include<assert.h>
 #include<string.h>
 
 int s3d_strcharin(char c, const char *chars) {
@@ -12,6 +13,19 @@ int s3d_strcharin(char c, const char *chars) {
     }
 
     return 0;
+}
+
+int s3d_strchrcount(const char *s, int c) {
+    int i = 0;
+    const char *ptr = s;
+
+    do {
+        if(*ptr == c) {
+            ++i;
+        }
+    } while(*(++ptr) != 0);
+
+    return i;
 }
 
 int s3d_strstartswith(const char *s, const char *prefix) {

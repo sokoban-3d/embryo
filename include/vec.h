@@ -16,6 +16,10 @@
     vec_[2] = z;                         \
 })
 
+#define s3d_axis_x (s3d_axis[0])
+#define s3d_axis_y (s3d_axis[1])
+#define s3d_axis_z (s3d_axis[2])
+
 typedef int s3d_ivec2[2];
 typedef int s3d_ivec3[3];
 typedef int s3d_ivec4[4];
@@ -23,5 +27,7 @@ typedef int s3d_ivec4[4];
 typedef float s3d_fvec2[2];
 typedef float s3d_fvec3[3];
 typedef float s3d_fvec4[4];
+
+extern s3d_fvec3 s3d_axis[3];
 
 #endif
