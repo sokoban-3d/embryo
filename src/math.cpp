@@ -33,4 +33,19 @@ cppfn void s3d_euler_rot(s3d_fmat4 mat, s3d_fvec3 rot) {
         s3d_axis_rot(mat, rot[i], s3d_axis[i]);
     }
 }
+ 
+cppfn void s3d_perspective(
+    s3d_fmat4 out, float fov, float ratio, float near, float far
+) {
+    glm::mat4 *_out = (glm::mat4 *)(out);
+
+    *_out = glm::perspective(fov, ratio, near, far);
+}
+ 
+cppfn void s3d_mat_mul(s3d_fmat4 a, const s3d_fmat4 b) {
+    glm::mat4 *_a = (glm::mat4 *)(a);
+    const glm::mat4 *_b = (const glm::mat4 *)(b);
+
+    *_a = (*_a) * (*_b);
+}
 

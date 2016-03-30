@@ -17,7 +17,6 @@ include_directories(${GLEE_INCLUDE_DIRS})
 include_directories(${GLFW_INCLUDE_DIRS})
 
 add_executable(sokoban-3d
-    "src/file.c"
     "src/gl.c"
     "src/glsl.c"
     "src/main.c"
@@ -27,6 +26,7 @@ add_executable(sokoban-3d
     "src/pad.c"
     "src/str.c"
     "src/stg.c"
+    "src/sys.c"
     "src/vec.c"
 )
 

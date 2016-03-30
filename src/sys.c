@@ -1,6 +1,7 @@
-#include "file.h"
+#include "sys.h"
 
 #include<stdio.h>
+#include<unistd.h>
 
 #include "err.h"
 
@@ -32,3 +33,8 @@ char *s3d_read_file(const char *path, int text, int *size) {
 
     return buf;
 }
+
+void s3d_fsleep(float seconds) {
+    usleep(seconds * 1e6);
+}
+

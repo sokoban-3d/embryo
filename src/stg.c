@@ -7,11 +7,11 @@
 #include<string.h>
 
 #include "err.h"
-#include "file.h"
 #include "maths.h"
 #include "math.hpp"
 #include "model.h"
 #include "str.h"
+#include "sys.h"
 
 #define pos_from_tpos(p, i, j) \
     s3d_stg.board.origin[i] + ( \
@@ -449,6 +449,98 @@ void s3d_stg_update() {
         pos_update(b);
         mat_update(b);
     }
+}
+
+int s3d_stg_play(int x, int y) {
+    if(
+        (x && y) ||
+        (!x && !y) ||
+        (x < -1 || x > 1) ||
+        (y < -1 || y > 1)
+    ) {
+        abort_because("Invalid move: (%d, %d).", x, y);
+    }
+
+    s3d_stg.pushed = 0;
+    s3d_stg.slotted = 0;
+
+    s3d_stg_player *p = &s3d_stg.player;
+
+    int dx = p->tpos[0] + x;
+    int dy = p->tpos[1] + y;
+
+    {
+        int d_obj_type;
+        void *d_obj;
+
+        s3d_stg_query_at(dx, dy, &d_obj_type, &d_obj, 0);
+
+        switch(d_obj_type) {
+            case s3d_stg_obj_type_outer_wall:
+            case s3d_stg_obj_type_wall:
+                return 0;
+
+            case s3d_stg_obj_type_block:
+                if(!s3d_stg_push_block(d_obj, x, y)) { return 0; }
+
+                break;
+        }
+    }
+
+    p->tpos[0] = dx;
+    p->tpos[1] = dy;
+
+    return 1;
+}
+
+int s3d_stg_push_block(s3d_stg_block *b, int x, int y) {
+    assert(b);
+
+    if(!x && !y) {
+        abort_because("Invalid push: (%d, %d).", x, y);
+    }
+
+    int dx = b->tpos[0] + x;
+    int dy = b->tpos[1] + y;
+
+    {
+        int d_obj_type;
+
+        void *d_obj;
+        s3d_stg_slot *d_slot;
+
+        s3d_stg_query_at(dx, dy, &d_obj_type, &d_obj, &d_slot);
+
+        if(
+            d_obj_type == s3d_stg_obj_type_outer_wall
+            || (d_obj && d_obj_type != s3d_stg_obj_type_slot)
+        ) {
+            return 0;
+        }
+
+        if(d_slot) {
+            ++s3d_stg.num_slotted_blocks;
+
+            s3d_stg.slotted = 1;
+        }
+    }
+
+    {
+        s3d_stg_slot *o_slot;
+
+        s3d_stg_query_at(b->tpos[0], b->tpos[1], 0, 0, &o_slot);
+
+        if(o_slot) {
+            --s3d_stg.num_slotted_blocks;
+        }
+    }
+
+    b->tpos[0] = dx;
+    b->tpos[1] = dy;
+
+    s3d_stg.pushed = 1;
+
+    return 1;
 }
 
 #undef pos_from_tpos

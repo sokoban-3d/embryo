@@ -4,8 +4,8 @@
 #include<GLFW/glfw3.h>
 
 #include "err.h"
-#include "file.h"
 #include "str.h"
+#include "sys.h"
 
 GLFWwindow *s3d_gl_wnd = 0;
 
@@ -156,5 +156,13 @@ void s3d_gl_load_dds(unsigned *tex_id, const char *path) {
     if(tex_id) {
         *tex_id = tex_id_;
     }
+}
+
+int s3d_gl_should_close() {
+    return glfwWindowShouldClose(s3d_gl_wnd);
+}
+
+void s3d_gl_swap() {
+    glfwSwapBuffers(s3d_gl_wnd);
 }
 

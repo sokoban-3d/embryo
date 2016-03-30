@@ -1,12 +1,15 @@
 #include<GL/GLee.h>
 #include<GLFW/glfw3.h>
 
+#include "err.h"
 #include "gl.h"
 #include "glsl.h"
 #include "mat.h"
 #include "maths.h"
+#include "math.hpp"
 #include "pad.h"
 #include "stg.h"
+#include "sys.h"
 #include "vec.h"
 
 s3d_ivec2 wnd_sz;
@@ -14,7 +17,7 @@ s3d_ivec2 wnd_sz;
 struct {
     float fov;
     s3d_fvec3 rot;
-    s3d_ivec3 pos;
+    s3d_fvec3 pos;
     s3d_fmat4 mat;
 } cam;
 
@@ -63,6 +66,157 @@ int main(int argc, char **argv) {
         s3d_stg_load_models(stg_path);
 
         s3d_stg_init();
+    }
+
+    while (!s3d_gl_should_close()) {
+        assert_gl_ok();
+
+        if (s3d_stg.num_slotted_blocks == s3d_stg.num_blocks) {
+            break;
+        }
+
+        if (s3d_pad_btn_st(DL, hit)) {
+            s3d_stg_play(-1, 0);
+
+        } else if(s3d_pad_btn_st(DU, hit)) {
+            s3d_stg_play(0, -1);
+
+        } else if(s3d_pad_btn_st(DR, hit)) {
+            s3d_stg_play(1, 0);
+
+        } else if(s3d_pad_btn_st(DD, hit)) {
+            s3d_stg_play(0, 1);
+        }
+
+        s3d_stg_update();
+
+        s3d_pad_update();
+
+        glfwGetWindowSize(s3d_gl_wnd, &wnd_sz[0], &wnd_sz[1]);
+
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+        {
+            glDepthMask(1);
+            glEnable(GL_DEPTH_TEST);
+
+            glUseProgram(main_prog.id);
+
+            {
+                s3d_perspective(
+                    cam.mat, cam.fov, s3d_ratio(wnd_sz), 0.1, 100
+                );
+
+                s3d_translate(cam.mat, cam.pos);
+                s3d_euler_rot(cam.mat, cam.rot);
+            }
+
+            static s3d_fmat4 mvp;
+
+            #define upload_mvp() \
+                glUniformMatrix4fv( \
+                    main_prog.uni.mvp_id, 1, 0, (float *)(mvp) \
+                )
+
+            {
+                {
+                    s3d_mat_copy(mvp, cam.mat);
+                    s3d_mat_mul(mvp, s3d_stg.mat);
+
+                    upload_mvp();
+                }
+
+                {
+                    s3d_model_bind_va(&s3d_stg.model);
+
+                    s3d_model_bind_tex(&s3d_stg.model);
+
+                    s3d_model_draw(&s3d_stg.model, 0);
+                }
+            }
+
+            {
+                {
+                    s3d_mat_copy(mvp, cam.mat);
+                    s3d_mat_mul(mvp, s3d_stg.player.mat);
+
+                    upload_mvp();
+                }
+
+                {
+                    s3d_model_bind_va(&s3d_stg.player_model);
+
+                    s3d_model_bind_tex(&s3d_stg.player_model);
+
+                    s3d_model_draw(&s3d_stg.player_model, 0);
+                }
+            }
+
+            for (int i = 0; i < s3d_stg.num_walls; ++i) {
+                s3d_stg_wall *w = &s3d_stg.walls[i];
+
+                {
+                    s3d_mat_copy(mvp, cam.mat);
+                    s3d_mat_mul(mvp, w->mat);
+
+                    upload_mvp();
+                }
+
+                {
+                    s3d_model_bind_va(&s3d_stg.wall_model);
+
+                    s3d_model_bind_tex(&s3d_stg.wall_model);
+
+                    s3d_model_draw(&s3d_stg.wall_model, 0);
+                }
+            }
+
+            for (int i = 0; i < s3d_stg.num_blocks; ++i) {
+                s3d_stg_block *b = &s3d_stg.blocks[i];
+
+                {
+                    s3d_mat_copy(mvp, cam.mat);
+                    s3d_mat_mul(mvp, b->mat);
+
+                    upload_mvp();
+                }
+
+                {
+                    s3d_model_bind_va(&s3d_stg.block_model);
+
+                    s3d_model_bind_tex(&s3d_stg.block_model);
+
+                    s3d_model_draw(&s3d_stg.block_model, 0);
+                }
+            }
+
+            for (int i = 0; i < s3d_stg.num_slots; ++i) {
+                s3d_stg_slot *s = &s3d_stg.slots[i];
+
+                {
+                    s3d_mat_copy(mvp, cam.mat);
+                    s3d_mat_mul(mvp, s->mat);
+
+                    upload_mvp();
+                }
+
+                {
+                    s3d_model_bind_va(&s3d_stg.slot_model);
+
+                    s3d_model_bind_tex(&s3d_stg.slot_model);
+
+                    s3d_model_draw(&s3d_stg.slot_model, 0);
+                }
+            }
+
+            #undef upload_mvp
+        }
+
+        s3d_gl_swap();
+
+        glfwPollEvents();
+
+        s3d_fsleep(0.001);
     }
 
     return 0;

@@ -30,5 +30,6 @@ struct {
     (s3d_pad_btn(btn) & s3d_pad_btn_##state)
 
 void s3d_pad_callback(GLFWwindow *wnd, int key, int scan, int action, int mods);
+void s3d_pad_update();
 
 #endif

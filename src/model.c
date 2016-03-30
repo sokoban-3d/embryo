@@ -7,9 +7,9 @@
 #include<unistd.h>
 
 #include "err.h"
-#include "file.h"
 #include "gl.h"
 #include "str.h"
+#include "sys.h"
 
 unsigned s3d_model_load_bufs(const char *path) {
     unsigned va_id;
@@ -114,5 +114,24 @@ void s3d_model_load(s3d_model *m, const char *path) {
     m->tex_id = s3d_model_load_tex(path);
 
     s3d_model_load_idxtab(&m->idxtab, path);
+}
+ 
+void s3d_model_bind_va(s3d_model *m) {
+    glBindVertexArray(m->va_id);
+}
+ 
+void s3d_model_bind_tex(s3d_model *m) {
+    glBindTexture(GL_TEXTURE_2D, m->tex_id);
+}
+ 
+void s3d_model_draw(s3d_model *m, int row) {
+    s3d_model_idxtab_row *idxrow = &m->idxtab.rows[row];
+
+    glDrawElements(
+        GL_TRIANGLES,
+        idxrow->num_idx,
+        GL_UNSIGNED_INT,
+        idxrow->idx_ptr
+    );
 }
 

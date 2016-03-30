@@ -100,6 +100,8 @@ void s3d_stg_load_spec(const char *path);
 void s3d_stg_load_models(const char *path);
 void s3d_stg_init();
 void s3d_stg_update();
+int s3d_stg_play(int x, int y);
+int s3d_stg_push_block(s3d_stg_block *b, int x, int y);
 
 #endif
 

@@ -4,7 +4,7 @@
 #include<GLFW/glfw3.h>
 
 #include "err.h"
-#include "file.h"
+#include "sys.h"
 
 unsigned s3d_glsl_load_program(const char *vs_path, const char *fs_path) {
     unsigned vs_id = s3d_glsl_load_shader(GL_VERTEX_SHADER, vs_path);
