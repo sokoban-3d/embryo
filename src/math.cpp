@@ -3,9 +3,10 @@
 #include<glm/gtx/transform.hpp>
 
 #include "cppfn.h"
-#include "mat.h"
 #include "maths.h"
 #include "vec.h"
+
+#include "matrix/type.h"
 
 cppfn void s3d_translate(s3d_fmat4 mat, const s3d_fvec3 val) {
     glm::mat4 *_mat = (glm::mat4 *)(mat);

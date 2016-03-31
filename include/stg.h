@@ -3,7 +3,7 @@
 
 #include "model.h"
 #include "vec.h"
-#include "mat.h"
+#include "matrix/type.h"
  
 enum {
     s3d_stg_obj_type_none,

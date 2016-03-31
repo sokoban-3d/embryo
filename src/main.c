@@ -2,7 +2,6 @@
 #include<GLFW/glfw3.h>
 
 #include "err.h"
-#include "mat.h"
 #include "maths.h"
 #include "math.hpp"
 #include "pad.h"
@@ -15,6 +14,8 @@
 #include "gl/swap.h"
 #include "gl/window.h"
 #include "glsl/load_program.h"
+#include "matrix/type.h"
+#include "matrix/copy.h"
 
 s3d_ivec2 wnd_sz;
 

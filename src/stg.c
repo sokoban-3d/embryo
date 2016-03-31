@@ -13,6 +13,8 @@
 #include "str.h"
 #include "sys.h"
 
+#include "matrix/identity.h"
+
 #define pos_from_tpos(p, i, j) \
     s3d_stg.board.origin[i] + ( \
         (p)->tpos[j] * s3d_stg.board.tsz \
