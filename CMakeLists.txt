@@ -18,19 +18,9 @@ include_directories(${GLU_INCLUDE_DIRS})
 include_directories(${GLEE_INCLUDE_DIRS})
 include_directories(${GLFW_INCLUDE_DIRS})
 
-add_executable(sokoban-3d
-    "src/gl.c"
-    "src/glsl.c"
-    "src/main.c"
-    "src/model.c"
-    "src/mat.c"
-    "src/math.cpp"
-    "src/pad.c"
-    "src/str.c"
-    "src/stg.c"
-    "src/sys.c"
-    "src/vec.c"
-)
+file(GLOB_RECURSE SOKOBAN_SRC "src/*.c" "src/*.cpp")
+
+add_executable(sokoban-3d ${SOKOBAN_SRC})
 
 target_link_libraries(sokoban-3d ${ASSIMP_LIBRARIES})
 target_link_libraries(sokoban-3d ${BSD_LIBRARIES})

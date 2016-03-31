@@ -7,9 +7,12 @@
 #include<unistd.h>
 
 #include "err.h"
-#include "gl.h"
 #include "str.h"
 #include "sys.h"
+
+#include "gl/load_buf.h"
+#include "gl/load_buf_fmt.h"
+#include "gl/load_dds.h"
 
 unsigned s3d_model_load_bufs(const char *path) {
     unsigned va_id;

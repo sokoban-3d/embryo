@@ -2,7 +2,6 @@
 #include<GLFW/glfw3.h>
 
 #include "err.h"
-#include "gl.h"
 #include "glsl.h"
 #include "mat.h"
 #include "maths.h"
@@ -11,6 +10,11 @@
 #include "stg.h"
 #include "sys.h"
 #include "vec.h"
+
+#include "gl/init.h"
+#include "gl/should_close.h"
+#include "gl/swap.h"
+#include "gl/window.h"
 
 s3d_ivec2 wnd_sz;
 
@@ -34,7 +38,7 @@ int main(int argc, char **argv) {
 
     s3d_gl_init(wnd_sz[0], wnd_sz[1], "Sokoban 3D Prototype");
 
-    glfwSetKeyCallback(s3d_gl_wnd, s3d_pad_callback);
+    glfwSetKeyCallback(s3d_gl_window, s3d_pad_callback);
 
     {
         cam.fov = s3d_radians(45);
@@ -92,7 +96,7 @@ int main(int argc, char **argv) {
 
         s3d_pad_update();
 
-        glfwGetWindowSize(s3d_gl_wnd, &wnd_sz[0], &wnd_sz[1]);
+        glfwGetWindowSize(s3d_gl_window, &wnd_sz[0], &wnd_sz[1]);
 
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 

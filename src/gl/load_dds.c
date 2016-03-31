@@ -1,87 +1,9 @@
-#include "gl.h"
+#include "gl/load_dds.h" 
 
 #include<GL/GLee.h>
-#include<GLFW/glfw3.h>
 
 #include "err.h"
-#include "str.h"
 #include "sys.h"
-
-GLFWwindow *s3d_gl_wnd = 0;
-
-void glfw_on_error(int err, const char *desc) {
-    abort_because("GLFW error: %s", desc);
-}
-
-void glfw_on_resize(GLFWwindow *wnd, int width, int height) {
-    glViewport(0, 0, width, height);
-} 
-
-void s3d_gl_init(int width, int height, const char *wndCaption) {
-    glfwSetErrorCallback(glfw_on_error);
-
-    assert_bool(glfwInit());
-
-    s3d_gl_wnd = assert_ptr(
-        glfwCreateWindow(width, height, wndCaption, 0, 0)
-    );
-
-    glfwMakeContextCurrent(s3d_gl_wnd);
-    glfwSwapInterval(1);
-
-    glfwSetWindowSizeCallback(s3d_gl_wnd, glfw_on_resize);
-}
-
-unsigned s3d_gl_load_buf(int type, const char *path, int hint) {
-    unsigned buf_id;
-
-    glGenBuffers(1, &buf_id);
-
-    int len;
-    char *data = s3d_read_file(path, 0, &len);
-
-    glBindBuffer(type, buf_id);
-    glBufferData(type, len, data, hint);
-
-    assert_gl_ok();
-
-    free(data);
-
-    return buf_id;
-}
-
-void s3d_gl_load_buf_fmt(const char *path) {
-    char *lines = s3d_read_file(path, 1, 0);
-
-    s3d_strrtrim(lines, "\n");
-    s3d_strrtrim(lines, "\r");
-
-    int stride;
-    void *uv_offset;
-
-    if(strcmp(lines, "xyz") == 0) {
-        stride = 0;
-        uv_offset = (void *)(-1);
-    }
-    else
-    if(strcmp(lines, "xyz uv") == 0) {
-        stride = 5 * 4;
-        uv_offset = (void *)(3 * 4);
-    }
-    else {
-        abort_because("%s: Unrecognized buffer format.");
-    }
-
-    free(lines);
-
-    glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 3, GL_FLOAT, 0, stride, 0);
-
-    if(uv_offset != (void *)(-1)) {
-        glEnableVertexAttribArray(1);
-        glVertexAttribPointer(1, 2, GL_FLOAT, 0, stride, uv_offset);
-    }
-}
 
 void s3d_gl_load_dds(unsigned *tex_id, const char *path) {
     int file_len;
@@ -156,13 +78,5 @@ void s3d_gl_load_dds(unsigned *tex_id, const char *path) {
     if(tex_id) {
         *tex_id = tex_id_;
     }
-}
-
-int s3d_gl_should_close() {
-    return glfwWindowShouldClose(s3d_gl_wnd);
-}
-
-void s3d_gl_swap() {
-    glfwSwapBuffers(s3d_gl_wnd);
 }
 
