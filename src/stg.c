@@ -7,12 +7,12 @@
 #include<string.h>
 
 #include "err.h"
-#include "maths.h"
 #include "model.h"
 #include "str.h"
 #include "sys.h"
 
 #include "math/euler_rot.h"
+#include "math/radians.h"
 #include "math/scale.hpp"
 #include "math/translate.hpp"
 #include "matrix/identity.h"

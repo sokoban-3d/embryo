@@ -2,7 +2,6 @@
 #include<GLFW/glfw3.h>
 
 #include "err.h"
-#include "maths.h"
 #include "pad.h"
 #include "stg.h"
 #include "sys.h"
@@ -14,6 +13,8 @@
 #include "glsl/load_program.h"
 #include "math/euler_rot.h"
 #include "math/perspective.hpp"
+#include "math/radians.h"
+#include "math/ratio.h"
 #include "math/translate.hpp"
 #include "matrix/type.h"
 #include "matrix/copy.h"
