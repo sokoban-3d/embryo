@@ -6,11 +6,11 @@
 #include<stdlib.h>
 #include<string.h>
 
-#include "err.h"
 #include "model.h"
 #include "str.h"
-#include "sys.h"
 
+#include "error/abort_because.h"
+#include "file/read_file.h"
 #include "math/euler_rot.h"
 #include "math/radians.h"
 #include "math/scale.hpp"

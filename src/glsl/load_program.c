@@ -2,7 +2,7 @@
 
 #include<GL/GLee.h>
 
-#include "err.h"
+#include "error/abort_because.h"
 #include "glsl/load_shader.h"
 
 unsigned s3d_glsl_load_program(const char *vs_path, const char *fs_path) {

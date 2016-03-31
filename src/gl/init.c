@@ -3,7 +3,9 @@
 #include<GL/GLee.h>
 #include<GLFW/glfw3.h>
 
-#include "err.h"
+#include "assert/bool.h"
+#include "assert/ptr.h"
+#include "error/abort_because.h"
 #include "gl/window.h"
 
 void glfw_on_error(int err, const char *desc) {

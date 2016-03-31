@@ -2,8 +2,8 @@
 
 #include<GL/GLee.h>
 
-#include "err.h"
-#include "sys.h"
+#include "assert/gl_ok.h"
+#include "file/read_file.h"
 
 unsigned s3d_gl_load_buf(int type, const char *path, int hint) {
     unsigned buf_id;

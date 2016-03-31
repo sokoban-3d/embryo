@@ -1,11 +1,10 @@
 #include<GL/GLee.h>
 #include<GLFW/glfw3.h>
 
-#include "err.h"
 #include "pad.h"
 #include "stg.h"
-#include "sys.h"
 
+#include "assert/gl_ok.h"
 #include "gl/init.h"
 #include "gl/should_close.h"
 #include "gl/swap.h"
@@ -19,6 +18,7 @@
 #include "matrix/type.h"
 #include "matrix/copy.h"
 #include "matrix/multiply.hpp"
+#include "time/fsleep.h"
 #include "vector/assign.h"
 #include "vector/type.h"
 

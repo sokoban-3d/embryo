@@ -1,9 +1,10 @@
 #include "gl/load_buf_fmt.h"
 
-#include "GL/GLee.h"
+#include<GL/GLee.h>
 
-#include "err.h"
-#include "sys.h"
+#include "error/abort_because.h"
+#include "file/read_file.h"
+#include "str.h"
 
 void s3d_gl_load_buf_fmt(const char *path) {
     char *lines = s3d_read_file(path, 1, 0);

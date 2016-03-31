@@ -6,10 +6,12 @@
 #include<string.h>
 #include<unistd.h>
 
-#include "err.h"
-#include "str.h"
-#include "sys.h"
+#include<GL/GLee.h>
 
+#include "str.h"
+
+#include "assert/ptr.h"
+#include "file/read_file.h"
 #include "gl/load_buf.h"
 #include "gl/load_buf_fmt.h"
 #include "gl/load_dds.h"

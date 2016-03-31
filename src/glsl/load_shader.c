@@ -1,9 +1,10 @@
 #include "glsl/load_shader.h"
 
 #include<GL/GLee.h>
+#include<stdlib.h>
 
-#include "err.h"
-#include "sys.h"
+#include "error/abort_because.h"
+#include "file/read_file.h"
 
 unsigned s3d_glsl_load_shader(int type, const char *path) {
     unsigned shader_id = glCreateShader(type);

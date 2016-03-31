@@ -1,9 +1,10 @@
 #include "gl/load_dds.h" 
 
 #include<GL/GLee.h>
+#include<string.h>
 
-#include "err.h"
-#include "sys.h"
+#include "error/abort_because.h"
+#include "file/read_file.h"
 
 void s3d_gl_load_dds(unsigned *tex_id, const char *path) {
     int file_len;
