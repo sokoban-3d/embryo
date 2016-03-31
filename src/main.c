@@ -3,19 +3,23 @@
 
 #include "err.h"
 #include "maths.h"
-#include "math.hpp"
 #include "pad.h"
 #include "stg.h"
 #include "sys.h"
-#include "vec.h"
 
 #include "gl/init.h"
 #include "gl/should_close.h"
 #include "gl/swap.h"
 #include "gl/window.h"
 #include "glsl/load_program.h"
+#include "math/euler_rot.h"
+#include "math/perspective.hpp"
+#include "math/translate.hpp"
 #include "matrix/type.h"
 #include "matrix/copy.h"
+#include "matrix/multiply.hpp"
+#include "vector/assign.h"
+#include "vector/type.h"
 
 s3d_ivec2 wnd_sz;
 

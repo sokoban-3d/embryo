@@ -22,9 +22,12 @@ file(GLOB_RECURSE SOKOBAN_SRC "src/*.c" "src/*.cpp")
 
 add_executable(sokoban-3d ${SOKOBAN_SRC})
 
-target_link_libraries(sokoban-3d ${ASSIMP_LIBRARIES})
-target_link_libraries(sokoban-3d ${BSD_LIBRARIES})
-target_link_libraries(sokoban-3d ${GLU_LIBRARIES})
-target_link_libraries(sokoban-3d ${GLEE_LIBRARIES})
-target_link_libraries(sokoban-3d ${GLFW_LIBRARIES})
+target_link_libraries(sokoban-3d
+    m
+    ${ASSIMP_LIBRARIES}
+    ${BSD_LIBRARIES}
+    ${GLU_LIBRARIES}
+    ${GLEE_LIBRARIES}
+    ${GLFW_LIBRARIES}
+)
 

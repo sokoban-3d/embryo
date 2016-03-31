@@ -8,12 +8,15 @@
 
 #include "err.h"
 #include "maths.h"
-#include "math.hpp"
 #include "model.h"
 #include "str.h"
 #include "sys.h"
 
+#include "math/euler_rot.h"
+#include "math/scale.hpp"
+#include "math/translate.hpp"
 #include "matrix/identity.h"
+#include "vector/assign.h"
 
 #define pos_from_tpos(p, i, j) \
     s3d_stg.board.origin[i] + ( \

@@ -2,8 +2,8 @@
 #define S3D_STG_H
 
 #include "model.h"
-#include "vec.h"
 #include "matrix/type.h"
+#include "vector/type.h"
  
 enum {
     s3d_stg_obj_type_none,
