@@ -2,7 +2,6 @@
 #include<GLFW/glfw3.h>
 
 #include "err.h"
-#include "glsl.h"
 #include "mat.h"
 #include "maths.h"
 #include "math.hpp"
@@ -15,6 +14,7 @@
 #include "gl/should_close.h"
 #include "gl/swap.h"
 #include "gl/window.h"
+#include "glsl/load_program.h"
 
 s3d_ivec2 wnd_sz;
 
