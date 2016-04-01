@@ -1,5 +1,12 @@
 #include "stage/load_models.h"
 
+#include<linux/limits.h>
+
+#include "model/load.h"
+#include "model/type.h"
+#include "stage/type.h"
+#include "string/arrjoin.h"
+
 void s3d_stg_load_models(const char *path) {
     static char path_buf[PATH_MAX];
 

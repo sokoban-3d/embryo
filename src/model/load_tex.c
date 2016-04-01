@@ -1,5 +1,11 @@
 #include "model/load_tex.h"
 
+#include<linux/limits.h>
+#include<unistd.h>
+
+#include "gl/load_dds.h"
+#include "string/arrjoin.h"
+
 int s3d_model_load_tex(const char *path) {
     static char path_buf[PATH_MAX];
 

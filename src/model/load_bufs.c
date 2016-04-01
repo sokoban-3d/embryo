@@ -1,5 +1,12 @@
 #include "model/load_bufs.h"
 
+#include<GL/GLee.h>
+#include<linux/limits.h>
+
+#include "gl/load_buf.h"
+#include "gl/load_buf_fmt.h"
+#include "string/arrjoin.h"
+
 unsigned s3d_model_load_bufs(const char *path) {
     unsigned va_id;
 

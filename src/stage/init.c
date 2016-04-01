@@ -1,5 +1,12 @@
 #include "stage/init.h"
 
+#include "stage/query_at.h"
+#include "stage/type.h"
+#include "stage/update.h"
+#include "vector/assign.h"
+
+#include "stage/def_macros.h"
+
 void s3d_stg_init() {
     {
         s3d_stg.num_slotted_blocks = 0;
@@ -49,3 +56,5 @@ void s3d_stg_init() {
 
     s3d_stg_update();
 }
+
+#include "stage/undef_macros.h"

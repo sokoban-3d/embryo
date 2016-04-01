@@ -1,5 +1,8 @@
 #include "pad/update.h"
 
+#include "pad/buttons.h"
+#include "pad/button_state.h"
+
 void s3d_pad_update() {
     #define update_btn(btn) \
         if(s3d_pad_btn_st(btn, hit)) { \

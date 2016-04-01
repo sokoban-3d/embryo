@@ -1,5 +1,9 @@
 #include "model/draw.h"
 
+#include<GL/GLee.h>
+
+#include "model/type.h"
+
 void s3d_model_draw(s3d_model *m, int row) {
     s3d_model_idxtab_row *idxrow = &m->idxtab.rows[row];
 

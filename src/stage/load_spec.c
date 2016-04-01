@@ -1,5 +1,19 @@
 #include "stage/load_spec.h"
 
+#include<errno.h>
+#include<linux/limits.h>
+#include<string.h>
+
+#include "alloc/callocptr.h"
+#include "error/abort_because.h"
+#include "file/read_file.h"
+#include "string/arrjoin.h"
+#include "string/eachline.h"
+#include "string/empty.h"
+#include "string/consume.h"
+#include "string/skip.h"
+#include "stage/type.h"
+
 void s3d_stg_load_spec(const char *path) {
     static char path_buf[PATH_MAX];
 

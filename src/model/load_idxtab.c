@@ -1,5 +1,19 @@
 #include "model/load_idxtab.h"
 
+#include<assert.h>
+#include<errno.h>
+#include<linux/limits.h>
+#include<string.h>
+
+#include "assert/ptr.h"
+#include "file/read_file.h"
+#include "model/idxtab.h"
+#include "model/idxtab_row.h"
+#include "string/arrjoin.h"
+#include "string/chrcount.h"
+#include "string/empty.h"
+#include "string/rtrim.h"
+
 void s3d_model_load_idxtab(s3d_model_idxtab *tab, const char *path) {
     char *lines;
 

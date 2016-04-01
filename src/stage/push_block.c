@@ -1,5 +1,12 @@
 #include "stage/push_block.h"
 
+#include<assert.h>
+
+#include "error/abort_because.h"
+#include "stage/obj_type.h"
+#include "stage/query_at.h"
+#include "stage/type.h"
+
 int s3d_stg_push_block(s3d_stg_block *b, int x, int y) {
     assert(b);
 

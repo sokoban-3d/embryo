@@ -1,6 +1,13 @@
 #include "pad/callback.h"
 
-void s3d_pad_callback(GLFWwindow *wnd, int key, int scan, int action, int mods) {
+#include<GLFW/glfw3.h>
+
+#include "pad/type.h"
+#include "pad/button_state.h"
+
+void s3d_pad_callback(GLFWwindow *wnd, int key, int scan, int action,
+    int mods)
+{
     if(action == GLFW_REPEAT) {
         return;
     }

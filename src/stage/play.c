@@ -1,5 +1,11 @@
 #include "stage/play.h"
 
+#include "error/abort_because.h"
+#include "stage/obj_type.h"
+#include "stage/push_block.h"
+#include "stage/query_at.h"
+#include "stage/type.h"
+
 int s3d_stg_play(int x, int y) {
     if(
         (x && y) ||

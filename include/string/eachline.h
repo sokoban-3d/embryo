@@ -1,6 +1,10 @@
 #ifndef S3D_STRING_EACHLINE_H
 #define S3D_STRING_EACHLINE_H
 
+#include<string.h>
+
+#include "string/rtrim.h"
+
 #define s3d_streachline(lines, line, i, ...) {          \
     int i = 0;                                          \
                                                         \

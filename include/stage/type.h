@@ -1,6 +1,14 @@
 #ifndef S3D_STAGE_TYPE_H
 #define S3D_STAGE_TYPE_H
 
+#include "matrix/type.h"
+#include "model/type.h"
+#include "vector/type.h"
+#include "stage/block.h"
+#include "stage/player.h"
+#include "stage/slot.h"
+#include "stage/wall.h"
+
 struct {
     struct {
         s3d_ivec2 sz;

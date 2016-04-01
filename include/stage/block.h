@@ -1,6 +1,9 @@
 #ifndef S3D_STAGE_BLOCK_H
 #define S3D_STAGE_BLOCK_H
 
+#include "matrix/type.h"
+#include "vector/type.h"
+
 typedef struct {
     s3d_ivec2 tpos;
 
