@@ -1,13 +1,10 @@
-#include "play.h"
+#include "stage/play.h"
 
-#include "stg.h"
-
-#include "query_at.h"
-#include "obj_type.h"
-
-#include "push_block.h"
-
-#include "../err/abort_because.h"
+#include "error/abort_because.h"
+#include "stage/obj_type.h"
+#include "stage/push_block.h"
+#include "stage/query_at.h"
+#include "stage/type.h"
 
 int s3d_stg_play(int x, int y) {
     if(
